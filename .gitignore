@@ -1,0 +1,15 @@
+sample/
+.cache
+venv
+docs/build/
+.idea
+__pycache__/
+.coverage
+chalice.egg-info/
+.hypothesis/
+.chalice/
+.pytest_cache/
+.mypy_cache/
+*.pyc
+.vscode
+.terraform
