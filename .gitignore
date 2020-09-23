@@ -5,9 +5,12 @@ docs/build/
 .idea
 __pycache__/
 .coverage
+.chalice/deployments
+chalice/py
+tf/sam.json
+tf/deployment.zip
 chalice.egg-info/
 .hypothesis/
-.chalice/
 .pytest_cache/
 .mypy_cache/
 *.pyc
