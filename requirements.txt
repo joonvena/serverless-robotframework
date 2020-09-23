@@ -2,3 +2,4 @@ chalice
 robotframework==3.2.2
 robotframework-requests==0.7.1
 boto3==1.14.63
+uuid
