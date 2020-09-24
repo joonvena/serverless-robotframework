@@ -63,6 +63,13 @@ def upload_reports():
 
     return report_urls
 
+def add_report_urls_and_styling(reports, output):
+    for report in reports:
+        output = re.sub("(?<=[Output: |Log: |Report: ] )\s+/tmp/output/{}(.html|.xml)".format(report), '<a href="{}">{}</a>'.format(reports[report], report), output)
+    output = re.sub("PASS", '<span style="color: green;">PASS</span>', output)
+    output = re.sub("FAIL", '<span style="color: red;">FAIL</span>', output)
+    return output
+
 @app.route('/', methods=['POST'], content_types=['text/plain'], api_key_required=True, cors=cors_config)
 def run_test():
     try:
@@ -74,8 +81,9 @@ def run_test():
         with io.StringIO() as v:
             run('/tmp/test.robot', outputdir='/tmp/output', stdout=v, stderr=v)
             reports = upload_reports()
+            output = add_report_urls_and_styling(reports, v.getvalue())
             response = {
-                "output": v.getvalue(),
+                "output": output,
                 "report_urls": reports,
                 "error": None
             }
